@@ -1,0 +1,29 @@
+.ItemForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ItemFormSubmit {
+    display: flex;
+    justify-content: end;
+}
+
+.ItemFormSubmit button {
+    border-color: #4aa058;
+}
+
+.ItemFormInput {
+    background-color: black;
+    color: white;
+    font-family: monospace;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    padding: 5px;
+}
+
+.ItemFormCheckbox {
+    display: flex;
+    align-items: center;
+}

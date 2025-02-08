@@ -1,10 +1,9 @@
-
-import './App.css'
+import SpacecraftBuilder from "./SpacecraftBuilder"
 
 function App() {
   return (
     <>
-      <h1>Hello</h1>
+      <SpacecraftBuilder />
     </>
   )
 }
