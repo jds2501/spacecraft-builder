@@ -7,6 +7,12 @@ const NAME = "itemFormName";
 const QUANTITY = "itemFormQuantity";
 const PURPOSE = "itemFormPurpose";
 const REQUIRED_STRING_FIELDS = [NAME, QUANTITY, PURPOSE];
+const INITIAL_VALUES = {
+    [NAME]: "",
+    [QUANTITY]: "",
+    [PURPOSE]: "",
+    [AGREE_TO_TERMS]: false
+};
 
 const validate = values => {
     const errors = {};
@@ -26,21 +32,15 @@ const validate = values => {
 
 const ItemForm = () => {
     const formik = useFormik({
-        initialValues: {
-            [NAME]: "",
-            [QUANTITY]: "",
-            [PURPOSE]: "",
-            [AGREE_TO_TERMS]: false
-        },
+        initialValues: INITIAL_VALUES,
         validate,
         validateOnChange: false,
         validateOnBlur: false,
-        onSubmit: values => {
+        onSubmit: (values, { resetForm }) => {
             console.log(JSON.stringify(values, null, 2));
+            resetForm();
         },
     });
-
-    console.log(formik.errors);
 
     return (
         <>
@@ -79,7 +79,7 @@ const ItemForm = () => {
                         name={AGREE_TO_TERMS}
                         type="checkbox"
                         onChange={formik.handleChange}
-                        value={formik.values.itemFormAgreeToTerms}
+                        checked={formik.values.itemFormAgreeToTerms}
                     />
                     <label htmlFor={AGREE_TO_TERMS}>Agree to Terms</label>
                 </div>
