@@ -16,3 +16,11 @@ button {
 button:active {
     transform: scale(0.9);
 }
+
+input:focus, textarea:focus {
+    background-color: black;
+    color: white;
+    border-color: white;
+    outline: none;
+}
+
