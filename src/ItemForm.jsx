@@ -2,10 +2,10 @@ import React from 'react';
 import { useFormik } from 'formik';
 import "./ItemForm.css";
 
-const AGREE_TO_TERMS = "itemFormAgreeToTerms";
-const NAME = "itemFormName";
-const QUANTITY = "itemFormQuantity";
-const PURPOSE = "itemFormPurpose";
+const AGREE_TO_TERMS = "agreeToTerms";
+const NAME = "name";
+const QUANTITY = "quantity";
+const PURPOSE = "purpose";
 const REQUIRED_STRING_FIELDS = [NAME, QUANTITY, PURPOSE];
 const INITIAL_VALUES = {
     [NAME]: "",
@@ -41,7 +41,8 @@ const ItemForm = ({ addItemCallback }) => {
         validateOnChange: false,
         validateOnBlur: false,
         onSubmit: (values, { resetForm }) => {
-            addItemCallback(values);
+            const id = crypto.randomUUID();
+            addItemCallback({ ...values, id: id });
             resetForm();
         },
     });
@@ -60,22 +61,22 @@ const ItemForm = ({ addItemCallback }) => {
                 />
 
                 <input
-                    className={formik.errors.itemFormQuantity ? "ItemFormInput-error" : "ItemFormInput"}
-                    name="itemFormQuantity"
+                    className={formik.errors[QUANTITY] ? "ItemFormInput-error" : "ItemFormInput"}
+                    name={QUANTITY}
                     type="text"
                     placeholder="Quantity"
                     onChange={formik.handleChange}
-                    value={formik.values.itemFormQuantity}
+                    value={formik.values[QUANTITY]}
                 />
 
                 <textarea
-                    className={formik.errors.itemFormPurpose ? "ItemFormInput-error" : "ItemFormInput"}
-                    name="itemFormPurpose"
+                    className={formik.errors[PURPOSE] ? "ItemFormInput-error" : "ItemFormInput"}
+                    name={PURPOSE}
                     placeholder="Purpose"
                     rows={"4"}
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
-                    value={formik.values.itemFormPurpose}
+                    value={formik.values[PURPOSE]}
                 />
 
                 <div className={formik.errors[AGREE_TO_TERMS] ? "ItemFormInput-error ItemFormCheckbox" : "ItemFormInput ItemFormCheckbox"}>
@@ -83,7 +84,7 @@ const ItemForm = ({ addItemCallback }) => {
                         name={AGREE_TO_TERMS}
                         type="checkbox"
                         onChange={formik.handleChange}
-                        checked={formik.values.itemFormAgreeToTerms}
+                        checked={formik.values[AGREE_TO_TERMS]}
                     />
                     <label htmlFor={AGREE_TO_TERMS}>Agree to Terms</label>
                 </div>
