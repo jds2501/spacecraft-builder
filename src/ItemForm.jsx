@@ -23,6 +23,10 @@ const validate = values => {
         }
     }
 
+    if (isNaN(values[QUANTITY])) {
+        errors[QUANTITY] = true;
+    }
+
     if (!values[AGREE_TO_TERMS]) {
         errors[AGREE_TO_TERMS] = true;
     }
@@ -30,14 +34,14 @@ const validate = values => {
     return errors;
 };
 
-const ItemForm = () => {
+const ItemForm = ({ addItemCallback }) => {
     const formik = useFormik({
         initialValues: INITIAL_VALUES,
         validate,
         validateOnChange: false,
         validateOnBlur: false,
         onSubmit: (values, { resetForm }) => {
-            console.log(JSON.stringify(values, null, 2));
+            addItemCallback(values);
             resetForm();
         },
     });
