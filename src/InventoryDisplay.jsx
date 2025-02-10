@@ -11,7 +11,7 @@ function InventoryDisplay({ inventoryItems, deleteItemCallback }) {
                     return (
                         <div key={id} className="InventoryDisplayItem">
                             <ItemCard name={name} quantity={quantity} purpose={purpose} />
-                            <ItemAction />
+                            <ItemAction id={id} deleteCallback={deleteItemCallback} />
                         </div>
                     )
                 })}

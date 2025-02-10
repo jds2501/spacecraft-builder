@@ -21,8 +21,6 @@ function SpacecraftBuilder() {
         });
     }
 
-    console.log(inventoryItems);
-
     return (
         <div className="SpacecraftBuilder">
             <h1>Spacecraft Builder</h1>

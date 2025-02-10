@@ -1,9 +1,11 @@
 import "./ItemAction.css";
 
-function ItemAction({ deleteCallback }) {
+function ItemAction({ id, deleteCallback }) {
     return (
         <div>
-            <button className="ItemAction">Delete</button>
+            <button className="ItemAction" onClick={() => {
+                deleteCallback(id);
+            }}>Delete</button>
         </div>
     )
 }
